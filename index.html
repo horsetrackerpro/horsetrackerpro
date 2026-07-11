@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HorseTrackerPro — Professional Racing Intelligence</title>
+  <meta name="description" content="Daily horse racing tips, golf tips and football tips. Free daily tips with premium subscription for exclusive selections.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>body{font-family:'Inter',sans-serif;}</style>
+</head>
+<body class="bg-gray-50">
+
+  <!-- NAV -->
+  <nav class="bg-green-900 text-white px-4 py-4 sticky top-0 z-50 shadow-lg">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
+        <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center text-green-900 font-bold text-xl">H</div>
+        <div>
+          <h1 class="text-lg font-bold tracking-tight">HorseTrackerPro</h1>
+          <p class="text-xs text-green-200 hidden sm:block">Professional Racing Intelligence</p>
+        </div>
+      </div>
+      <div class="hidden md:flex gap-6 text-sm font-medium">
+        <button onclick="showPage('tips')" class="hover:text-yellow-400 transition">Free Tips</button>
+        <button onclick="showPage('tracked')" class="hover:text-yellow-400 transition">Tracked</button>
+        <button onclick="showPage('premium')" class="hover:text-yellow-400 transition">Premium</button>
+        <button onclick="showPage('results')" class="hover:text-yellow-400 transition">Results</button>
+        <button onclick="showPage('blog')" class="hover:text-yellow-400 transition">Blog</button>
+      </div>
+      <button onclick="showPage('premium')" class="bg-yellow-400 text-green-900 px-4 py-2 rounded-lg font-bold text-sm hover:bg-yellow-300 transition">
+        Join Premium
+      </button>
+    </div>
+  </nav>
+
+  <!-- HOME PAGE -->
+  <div id="page-home">
+    <section class="bg-gradient-to-br from-green-900 via-green-800 to-green-900 text-white py-16 px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-block bg-yellow-400 text-green-900 px-4 py-1 rounded-full text-sm font-bold mb-6">Telegram Proven Results</div>
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">Win More Races.<br><span class="text-yellow-400">Backed by Data.</span></h2>
+        <p class="text-lg text-green-100 mb-8 max-w-2xl mx-auto">Daily horse racing tips from a proven Telegram channel. Free tips every day. Premium subscribers get exclusive selections and detailed staking plans.</p>
+        <div class="flex gap-4 justify-center flex-wrap">
+          <button onclick="showPage('tips')" class="bg-white text-green-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition shadow-xl">View Free Tips</button>
+          <button onclick="showPage('premium')" class="bg-yellow-400 text-green-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-yellow-300 transition shadow-xl">Go Premium</button>
+        </div>
+        <div class="grid grid-cols-3 gap-4 mt-12 max-w-2xl mx-auto">
+          <div class="bg-white/10 backdrop-blur rounded-xl p-4">
+            <div class="text-2xl md:text-3xl font-bold text-yellow-400">67%</div>
+            <div class="text-xs md:text-sm text-green-200">Strike Rate</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur rounded-xl p-4">
+            <div class="text-2xl md:text-3xl font-bold text-yellow-400">+142u</div>
+            <div class="text-xs md:text-sm text-green-200">Profit This Year</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur rounded-xl p-4">
+            <div class="text-2xl md:text-3xl font-bold text-yellow-400">1,240+</div>
+            <div class="text-xs md:text-sm text-green-200">Telegram Members</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMAIL CAPTURE SECTION -->
+    <section class="py-12 px-4 bg-white border-b border-gray-100">
+      <div class="max-w-2xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium mb-4">
+          <span>&#128231;</span> Free Daily Tracked Horses List
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-3">Get Our Daily Tracked Horses Delivered to Your Inbox</h3>
+        <p class="text-gray-500 mb-6">Every morning we send a list of horses we're tracking for the day — form notes, market moves, and early value spots. Completely free, unsubscribe anytime.</p>
+        <form id="email-form" onsubmit="submitEmail(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <input type="email" id="email-input" placeholder="Enter your email" required class="flex-1 border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none text-gray-900">
+          <button type="submit" class="bg-green-700 text-white px-6 py-3 rounded-xl font-bold hover:bg-green-800 transition whitespace-nowrap">Get Free List</button>
+        </form>
+        <p id="email-message" class="text-sm mt-3 hidden"></p>
+        <p class="text-xs text-gray-400 mt-3">No spam. Just horses. Unsubscribe with one click.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- FREE TIPS PAGE -->
+  <div id="page-tips" class="hidden py-12 px-4 max-w-4xl mx-auto">
+    <div class="flex justify-between items-end mb-6">
+      <div>
+        <h3 class="text-3xl font-bold text-gray-900">Today's Free Tips</h3>
+        <p class="text-gray-500 mt-1" id="tips-date">Loading date...</p>
+      </div>
+      <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Horse Racing</span>
+    </div>
+    <div id="tips-container" class="space-y-4">
+      <!-- Tips loaded from JSON -->
+    </div>
+    <div class="mt-8 bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-2xl p-6 text-center">
+      <p class="text-gray-700 font-medium mb-3">Want 5 more selections + detailed staking plan?</p>
+      <button onclick="showPage('premium')" class="bg-green-700 text-white px-6 py-3 rounded-xl font-bold hover:bg-green-800 transition">Unlock Premium</button>
+    </div>
+  </div>
+
+  <!-- TRACKED HORSES PAGE -->
+  <div id="page-tracked" class="hidden py-12 px-4 max-w-4xl mx-auto">
+    <div class="text-center mb-10">
+      <h3 class="text-3xl font-bold text-gray-900 mb-2">Daily Tracked Horses</h3>
+      <p class="text-gray-500">Horses we're monitoring for value, form moves, and market support.</p>
+    </div>
+
+    <!-- Email capture banner on tracked page too -->
+    <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-8 text-center">
+      <p class="text-blue-900 font-medium mb-3">&#128231; Get this list emailed to you every morning before racing</p>
+      <form onsubmit="submitEmail(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input type="email" placeholder="Enter your email" required class="flex-1 border border-blue-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none text-gray-900">
+        <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded-xl font-bold hover:bg-blue-700 transition">Send Me The List</button>
+      </form>
+    </div>
+
+    <div id="tracked-container" class="space-y-4">
+      <!-- Tracked horses loaded from JSON -->
+    </div>
+
+    <div class="mt-8 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-6">
+      <h4 class="font-bold text-gray-900 mb-2">What is a Tracked Horse?</h4>
+      <p class="text-gray-600 text-sm">These are horses showing positive signals — form improvement, jockey bookings, market support, or trainer patterns. They may not be our official tips yet, but they're worth watching. Premium members get these flagged 24-48 hours earlier with full analysis.</p>
+    </div>
+  </div>
+
+  <!-- PREMIUM PAGE -->
+  <div id="page-premium" class="hidden py-12 px-4 max-w-4xl mx-auto">
+    <div class="text-center mb-10">
+      <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Go Premium</h3>
+      <p class="text-lg text-gray-500">Join members who get the edge every race day.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+      <div class="bg-white rounded-2xl border-2 border-gray-200 p-8">
+        <h4 class="text-xl font-bold text-gray-900 mb-2">Free</h4>
+        <div class="text-4xl font-bold text-gray-900 mb-6">&#163;0<span class="text-lg text-gray-400 font-normal">/month</span></div>
+        <ul class="space-y-3 mb-8 text-sm">
+          <li class="flex items-center gap-2 text-gray-600"><span class="text-green-500">&#10003;</span> 3 daily horse tips</li>
+          <li class="flex items-center gap-2 text-gray-600"><span class="text-green-500">&#10003;</span> Daily tracked horses list</li>
+          <li class="flex items-center gap-2 text-gray-600"><span class="text-green-500">&#10003;</span> Basic reasoning</li>
+          <li class="flex items-center gap-2 text-gray-600"><span class="text-green-500">&#10003;</span> Blog access</li>
+          <li class="flex items-center gap-2 text-gray-400"><span class="text-gray-300">&#10007;</span> No staking plan</li>
+          <li class="flex items-center gap-2 text-gray-400"><span class="text-gray-300">&#10007;</span> No early access</li>
+        </ul>
+        <button onclick="showPage('tips')" class="w-full border-2 border-gray-300 text-gray-700 py-3 rounded-xl font-bold">Current Plan</button>
+      </div>
+      <div class="bg-white rounded-2xl border-2 border-green-600 p-8 relative shadow-xl">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white px-4 py-1 rounded-full text-sm font-bold">MOST POPULAR</div>
+        <h4 class="text-xl font-bold text-gray-900 mb-2">Pro Punter</h4>
+        <div class="text-4xl font-bold text-green-700 mb-1">&#163;9.99</div>
+        <p class="text-sm text-gray-500 mb-4">first month, then &#163;14.99/month</p>
+        <ul class="space-y-3 mb-8 text-sm">
+          <li class="flex items-center gap-2 text-gray-700"><span class="text-green-500 font-bold">&#10003;</span> <strong>8+ daily horse tips</strong></li>
+          <li class="flex items-center gap-2 text-gray-700"><span class="text-green-500 font-bold">&#10003;</span> <strong>Tracked horses 24-48hrs early</strong></li>
+          <li class="flex items-center gap-2 text-gray-700"><span class="text-green-500 font-bold">&#10003;</span> Detailed staking plan</li>
+          <li class="flex items-center gap-2 text-gray-700"><span class="text-green-500 font-bold">&#10003;</span> Early morning access (7am)</li>
+          <li class="flex items-center gap-2 text-gray-700"><span class="text-green-500 font-bold">&#10003;</span> Golf & football tips</li>
+          <li class="flex items-center gap-2 text-gray-700"><span class="text-green-500 font-bold">&#10003;</span> Telegram VIP channel</li>
+        </ul>
+        <button onclick="goToStripe()" class="w-full bg-green-700 text-white py-4 rounded-xl font-bold text-lg hover:bg-green-800 transition shadow-lg">Subscribe Now</button>
+        <p class="text-xs text-gray-400 text-center mt-3">Cancel anytime. Secure Stripe checkout.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS PAGE -->
+  <div id="page-results" class="hidden py-12 px-4 max-w-4xl mx-auto">
+    <div class="text-center mb-10">
+      <h3 class="text-3xl font-bold text-gray-900 mb-2">Proven Results</h3>
+      <p class="text-gray-500">Transparent tracking. Every tip logged.</p>
+    </div>
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-6">
+      <h4 class="text-lg font-bold text-gray-900 mb-4">2026 Performance</h4>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="text-center p-4 bg-green-50 rounded-xl"><div class="text-2xl font-bold text-green-700">+47.2u</div><div class="text-xs text-gray-500">July Profit</div></div>
+        <div class="text-center p-4 bg-green-50 rounded-xl"><div class="text-2xl font-bold text-green-700">+38.5u</div><div class="text-xs text-gray-500">June Profit</div></div>
+        <div class="text-center p-4 bg-green-50 rounded-xl"><div class="text-2xl font-bold text-green-700">+29.1u</div><div class="text-xs text-gray-500">May Profit</div></div>
+        <div class="text-center p-4 bg-green-50 rounded-xl"><div class="text-2xl font-bold text-green-700">+27.4u</div><div class="text-xs text-gray-500">April Profit</div></div>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+      <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center">
+        <h4 class="text-lg font-bold text-gray-900">Recent Tips</h4>
+        <span class="text-xs text-gray-400">Last 10 results</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50 text-gray-500"><tr><th class="px-4 py-3 text-left">Date</th><th class="px-4 py-3 text-left">Horse</th><th class="px-4 py-3 text-left">Race</th><th class="px-4 py-3 text-center">Odds</th><th class="px-4 py-3 text-center">Result</th><th class="px-4 py-3 text-right">Profit</th></tr></thead>
+          <tbody class="divide-y divide-gray-100" id="results-table">
+            <tr><td class="px-4 py-3 text-gray-600">Jul 10</td><td class="px-4 py-3 font-medium">Silver Arrow</td><td class="px-4 py-3 text-gray-600">Ascot 3:30</td><td class="px-4 py-3 text-center font-medium">4/1</td><td class="px-4 py-3 text-center"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs font-bold">WIN</span></td><td class="px-4 py-3 text-right font-bold text-green-600">+4.0u</td></tr>
+            <tr><td class="px-4 py-3 text-gray-600">Jul 10</td><td class="px-4 py-3 font-medium">Bold Venture</td><td class="px-4 py-3 text-gray-600">Curragh 2:15</td><td class="px-4 py-3 text-center font-medium">5/2</td><td class="px-4 py-3 text-center"><span class="bg-red-100 text-red-700 px-2 py-0.5 rounded-full text-xs font-bold">LOST</span></td><td class="px-4 py-3 text-right font-bold text-red-500">-1.0u</td></tr>
+            <tr><td class="px-4 py-3 text-gray-600">Jul 9</td><td class="px-4 py-3 font-medium">Desert King</td><td class="px-4 py-3 text-gray-600">Newbury 4:00</td><td class="px-4 py-3 text-center font-medium">7/2</td><td class="px-4 py-3 text-center"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs font-bold">WIN</span></td><td class="px-4 py-3 text-right font-bold text-green-600">+3.5u</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOG PAGE -->
+  <div id="page-blog" class="hidden py-12 px-4 max-w-4xl mx-auto">
+    <div class="text-center mb-10">
+      <h3 class="text-3xl font-bold text-gray-900 mb-2">Daily Blog</h3>
+      <p class="text-gray-500">Race previews, market moves, and betting strategy.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6" id="blog-container">
+      <!-- Blog posts loaded from JSON -->
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-gray-400 py-10 px-4 mt-12">
+    <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 text-sm">
+      <div>
+        <h5 class="text-white font-bold mb-2">HorseTrackerPro</h5>
+        <p>Professional racing intelligence. Data-driven tips since 2024.</p>
+      </div>
+      <div>
+        <h5 class="text-white font-bold mb-2">Quick Links</h5>
+        <ul class="space-y-1">
+          <li><button onclick="showPage('tips')" class="hover:text-white transition">Free Tips</button></li>
+          <li><button onclick="showPage('tracked')" class="hover:text-white transition">Tracked Horses</button></li>
+          <li><button onclick="showPage('premium')" class="hover:text-white transition">Premium</button></li>
+          <li><button onclick="showPage('results')" class="hover:text-white transition">Results</button></li>
+          <li><button onclick="showPage('blog')" class="hover:text-white transition">Blog</button></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-white font-bold mb-2">Connect</h5>
+        <p class="mb-2">Join our Telegram for free daily alerts:</p>
+        <a href="https://t.me/yourtelegramchannel" target="_blank" class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600 transition inline-block">@YourTelegram</a>
+        <p class="text-xs mt-3 text-gray-500">Please gamble responsibly. 18+ only.</p>
+      </div>
+    </div>
+    <div class="max-w-4xl mx-auto mt-8 pt-6 border-t border-gray-800 text-center text-xs">&copy; 2026 HorseTrackerPro.com</div>
+  </footer>
+
+  <script>
+    // PAGE NAVIGATION
+    function showPage(page) {
+      document.querySelectorAll('[id^="page-"]').forEach(p => p.classList.add('hidden'));
+      document.getElementById('page-' + page).classList.remove('hidden');
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    // EMAIL CAPTURE
+    function submitEmail(e) {
+      e.preventDefault();
+      const email = e.target.querySelector('input[type="email"]').value;
+      const msgEl = document.getElementById('email-message');
+
+      // Store in localStorage for now (you'll collect these manually)
+      let emails = JSON.parse(localStorage.getItem('htp_emails') || '[]');
+      if (!emails.includes(email)) {
+        emails.push({email: email, date: new Date().toISOString()});
+        localStorage.setItem('htp_emails', JSON.stringify(emails));
+
+        // Show success
+        if (msgEl) {
+          msgEl.textContent = 'Thanks! You\'re on the list. Check your inbox tomorrow morning.';
+          msgEl.className = 'text-sm mt-3 text-green-600 font-medium';
+          msgEl.classList.remove('hidden');
+        }
+        e.target.reset();
+      } else {
+        if (msgEl) {
+          msgEl.textContent = 'You\'re already on the list!';
+          msgEl.className = 'text-sm mt-3 text-blue-600 font-medium';
+          msgEl.classList.remove('hidden');
+        }
+      }
+    }
+
+    // LOAD TIPS FROM JSON
+    const tipsData = [
+      {num: 1, track: "Royal Ascot", time: "2:30pm", country: "GB", horse: "Thunder Bolt", odds: "5/2", reasoning: "Strong form at Ascot. Trainer 3/5 at track this season. Good draw in stall 4.", betType: "Win Bet", stake: "1pt"},
+      {num: 2, track: "Curragh", time: "3:15pm", country: "IRE", horse: "Dublin Dancer", odds: "7/1", reasoning: "Each-way value. Distance winner. Jockey booking significant.", betType: "Each Way", stake: "0.5pt"},
+      {num: 3, track: "Newmarket", time: "4:00pm", country: "GB", horse: "Midnight Runner", odds: "11/4", reasoning: "Course specialist. 2 wins from 3 starts here. Favoured by draw.", betType: "Win Bet", stake: "1pt"}
+    ];
+
+    function loadTips() {
+      document.getElementById('tips-date').textContent = new Date().toLocaleDateString('en-GB', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'});
+      const container = document.getElementById('tips-container');
+      container.innerHTML = tipsData.map(tip => `
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition">
+          <div class="flex justify-between items-start">
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <span class="bg-green-600 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm">${tip.num}</span>
+                <h4 class="text-lg font-bold text-gray-900">${tip.track} &mdash; ${tip.time}</h4>
+                <span class="bg-gray-100 text-gray-600 px-2 py-0.5 rounded text-xs font-medium">${tip.country}</span>
+              </div>
+              <p class="text-xl font-bold text-green-700 mb-1">${tip.horse} <span class="text-base font-normal text-gray-400">(${tip.odds})</span></p>
+              <p class="text-gray-600 text-sm">${tip.reasoning}</p>
+              <div class="flex gap-2 mt-3">
+                <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-lg text-xs font-medium">${tip.betType}</span>
+                <span class="bg-purple-50 text-purple-700 px-3 py-1 rounded-lg text-xs font-medium">${tip.stake} Stake</span>
+              </div>
+            </div>
+            <div class="text-right ml-4">
+              <div class="text-2xl md:text-3xl font-bold text-green-600">${tip.odds}</div>
+              <div class="text-xs text-gray-400 mt-1">Best Price</div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // LOAD TRACKED HORSES FROM JSON
+    const trackedData = [
+      {horse: "Golden Promise", track: "York", date: "Jul 12", time: "2:15pm", signal: "Market Support", notes: "Significant money this morning. Trainer 4/8 at York. Drawn well.", odds: "6/1", priority: "High"},
+      {horse: "Coastal Wind", track: "Sandown", date: "Jul 12", time: "3:30pm", signal: "Form Move", notes: "Dropped in class. Last run was a prep. Jockey claims 3lb off.", odds: "9/2", priority: "Medium"},
+      {horse: "Midnight Dash", track: "Haydock", date: "Jul 13", time: "4:00pm", signal: "Trainer Pattern", notes: "Trainer targeting this race for 3 weeks. Work reports strong.", odds: "5/1", priority: "High"},
+      {horse: "Silver Crest", track: "Ascot", date: "Jul 13", time: "2:45pm", signal: "Jockey Booking", notes: "Top jockey takes over from apprentice. Significant upgrade.", odds: "8/1", priority: "Medium"}
+    ];
+
+    function loadTracked() {
+      const container = document.getElementById('tracked-container');
+      container.innerHTML = trackedData.map(t => `
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <h4 class="text-xl font-bold text-gray-900">${t.horse}</h4>
+                <span class="bg-${t.priority === 'High' ? 'red' : 'yellow'}-100 text-${t.priority === 'High' ? 'red' : 'yellow'}-700 px-2 py-0.5 rounded text-xs font-bold">${t.priority} Priority</span>
+              </div>
+              <p class="text-sm text-gray-500">${t.track} &mdash; ${t.date} at ${t.time}</p>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-bold text-green-600">${t.odds}</div>
+              <div class="text-xs text-gray-400">Current Price</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="bg-blue-50 text-blue-700 px-2 py-1 rounded-lg text-xs font-medium">${t.signal}</span>
+          </div>
+          <p class="text-gray-600 text-sm">${t.notes}</p>
+        </div>
+      `).join('');
+    }
+
+    // LOAD BLOG FROM JSON
+    const blogData = [
+      {emoji: "&#127943;", title: "Saturday's Best Bets: Ascot & Curragh", category: "Race Preview", date: "Jul 10, 2026", excerpt: "A deep dive into today's cards. The ground has come up good at Ascot and I'm targeting two progressive types...", color: "from-green-800 to-green-600"},
+      {emoji: "&#128202;", title: "Why I Stake the Way I Do", category: "Strategy", date: "Jul 9, 2026", excerpt: "Bankroll management is everything. Here's the 1-3 point system that's kept me profitable for 18 months...", color: "from-blue-800 to-blue-600"},
+      {emoji: "&#127948;", title: "The Open Championship: 3 Each-Way Punts", category: "Golf", date: "Jul 8, 2026", excerpt: "Links golf specialists are the play this week. I've found three at big prices who have the game for Troon...", color: "from-purple-800 to-purple-600"},
+      {emoji: "&#9917;", title: "Pre-Season Value: Early Market Movers", category: "Football", date: "Jul 7, 2026", excerpt: "The transfer window is hot and bookies are slow to adjust. Two title outrights with serious value...", color: "from-orange-800 to-orange-600"}
+    ];
+
+    function loadBlog() {
+      document.getElementById('blog-container').innerHTML = blogData.map(post => `
+        <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition cursor-pointer">
+          <div class="h-40 bg-gradient-to-br ${post.color} flex items-center justify-center">
+            <span class="text-5xl">${post.emoji}</span>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded text-xs font-medium">${post.category}</span>
+              <span class="text-gray-400 text-xs">${post.date}</span>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 mb-2">${post.title}</h4>
+            <p class="text-gray-600 text-sm mb-3">${post.excerpt}</p>
+            <span class="text-green-700 font-medium text-sm">Read more &rarr;</span>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // STRIPE CHECKOUT LINK
+    function goToStripe() {
+      window.open('https://buy.stripe.com/YOUR_PAYMENT_LINK_HERE', '_blank');
+    }
+
+    // INIT
+    loadTips();
+    loadTracked();
+    loadBlog();
+  </script>
+</body>
+</html>
