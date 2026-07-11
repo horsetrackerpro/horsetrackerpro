@@ -1,0 +1,45 @@
+{
+  "date": "2026-07-11",
+  "tracked": [
+    {
+      "horse": "Golden Promise",
+      "track": "York",
+      "date": "Jul 12",
+      "time": "2:15pm",
+      "signal": "Market Support",
+      "notes": "Significant money this morning. Trainer 4/8 at York. Drawn well.",
+      "odds": "6/1",
+      "priority": "High"
+    },
+    {
+      "horse": "Coastal Wind",
+      "track": "Sandown",
+      "date": "Jul 12",
+      "time": "3:30pm",
+      "signal": "Form Move",
+      "notes": "Dropped in class. Last run was a prep. Jockey claims 3lb off.",
+      "odds": "9/2",
+      "priority": "Medium"
+    },
+    {
+      "horse": "Midnight Dash",
+      "track": "Haydock",
+      "date": "Jul 13",
+      "time": "4:00pm",
+      "signal": "Trainer Pattern",
+      "notes": "Trainer targeting this race for 3 weeks. Work reports strong.",
+      "odds": "5/1",
+      "priority": "High"
+    },
+    {
+      "horse": "Silver Crest",
+      "track": "Ascot",
+      "date": "Jul 13",
+      "time": "2:45pm",
+      "signal": "Jockey Booking",
+      "notes": "Top jockey takes over from apprentice. Significant upgrade.",
+      "odds": "8/1",
+      "priority": "Medium"
+    }
+  ]
+}

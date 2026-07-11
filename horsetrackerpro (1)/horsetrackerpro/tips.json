@@ -1,0 +1,38 @@
+{
+  "date": "2026-07-11",
+  "tips": [
+    {
+      "num": 1,
+      "track": "Royal Ascot",
+      "time": "2:30pm",
+      "country": "GB",
+      "horse": "Thunder Bolt",
+      "odds": "5/2",
+      "reasoning": "Strong form at Ascot. Trainer 3/5 at track this season. Good draw in stall 4.",
+      "betType": "Win Bet",
+      "stake": "1pt"
+    },
+    {
+      "num": 2,
+      "track": "Curragh",
+      "time": "3:15pm",
+      "country": "IRE",
+      "horse": "Dublin Dancer",
+      "odds": "7/1",
+      "reasoning": "Each-way value. Distance winner. Jockey booking significant.",
+      "betType": "Each Way",
+      "stake": "0.5pt"
+    },
+    {
+      "num": 3,
+      "track": "Newmarket",
+      "time": "4:00pm",
+      "country": "GB",
+      "horse": "Midnight Runner",
+      "odds": "11/4",
+      "reasoning": "Course specialist. 2 wins from 3 starts here. Favoured by draw.",
+      "betType": "Win Bet",
+      "stake": "1pt"
+    }
+  ]
+}
